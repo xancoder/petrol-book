@@ -18,8 +18,9 @@
       "dist/**/*"
     ],
     "output": "./releases",
-    "nwVersion": "0.40.1",
+    "nwVersion": "0.49.0",
     "nwPlatforms": [
+      "linux",
       "win"
     ],
     "nwArchs": [
