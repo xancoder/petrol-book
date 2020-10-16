@@ -9,8 +9,8 @@
   "node-remote": "*://localhost/*",
   "bg-script": "./dist/bg/bg.js",
   "window": {
-    "width": 1000,
-    "height": 563
+    "width": 1280,
+    "height": 720
   },
   "build": {
     "files": [
