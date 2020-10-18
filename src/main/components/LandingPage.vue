@@ -59,10 +59,34 @@
                           </v-menu>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
-                          <v-text-field
-                            v-model="tableEditedItem.time"
-                            label="Time"
-                          ></v-text-field>
+                          <v-menu
+                            ref="menu"
+                            v-model="menuTime"
+                            :close-on-content-click="false"
+                            :nudge-right="40"
+                            :return-value.sync="tableEditedItem.time"
+                            min-width="290px"
+                            offset-y
+                            transition="scale-transition"
+                          >
+                            <template v-slot:activator="{ on, attrs }">
+                              <v-text-field
+                                v-model="tableEditedItem.time"
+                                v-bind="attrs"
+                                v-on="on"
+                                label="Time"
+                                prepend-icon="mdi-clock-time-four-outline"
+                                readonly
+                              ></v-text-field>
+                            </template>
+                            <v-time-picker
+                              v-if="menuTime"
+                              v-model="tableEditedItem.time"
+                              format="24hr"
+                              full-width
+                              @click:minute="$refs.menu.save(tableEditedItem.time)"
+                            ></v-time-picker>
+                          </v-menu>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
                           <v-text-field
@@ -185,6 +209,7 @@ export default {
       mileage: 0
     },
     menuDate: false,
+    menuTime: false,
     workingData: {
       fuelingOperations: [],
       meta: {
