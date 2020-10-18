@@ -34,10 +34,29 @@
                     <v-container>
                       <v-row>
                         <v-col cols="12" sm="6" md="4">
-                          <v-text-field
-                            v-model="tableEditedItem.date"
-                            label="Date"
-                          ></v-text-field>
+                          <v-menu
+                            v-model="menuDate"
+                            :close-on-content-click="false"
+                            :nudge-right="40"
+                            min-width="290px"
+                            offset-y
+                            transition="scale-transition"
+                          >
+                            <template v-slot:activator="{ on, attrs }">
+                              <v-text-field
+                                v-model="tableEditedItem.date"
+                                v-bind="attrs"
+                                v-on="on"
+                                label="Date"
+                                prepend-icon="mdi-calendar"
+                                readonly
+                              ></v-text-field>
+                            </template>
+                            <v-date-picker
+                              v-model="tableEditedItem.date"
+                              @input="menuDate = false"
+                            ></v-date-picker>
+                          </v-menu>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
                           <v-text-field
@@ -165,6 +184,7 @@ export default {
       distance: 0,
       mileage: 0
     },
+    menuDate: false,
     workingData: {
       fuelingOperations: [],
       meta: {
