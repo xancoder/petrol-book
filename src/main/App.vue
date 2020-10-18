@@ -14,8 +14,8 @@
 const {label} = require('../../package')
 
 export default {
-  components: {},
   name: 'app',
+  components: {},
   data: () => ({
     title: label
   })

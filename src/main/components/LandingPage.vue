@@ -10,8 +10,8 @@
 
 <script>
 export default {
-  components: {},
   name: 'landing-page',
+  components: {},
   data: () => ({})
 }
 </script>
