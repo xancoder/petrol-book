@@ -89,10 +89,11 @@
                           </v-menu>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
-                          <v-text-field
+                          <v-combobox
                             v-model="tableEditedItem.petrolStation"
+                            :items="petrolStations"
                             label="Station"
-                          ></v-text-field>
+                          ></v-combobox>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
                           <v-text-field
@@ -232,6 +233,13 @@ export default {
   computed: {
     formTitle() {
       return this.tableEditedIndex === -1 ? 'New Item' : 'Edit Item'
+    },
+    petrolStations() {
+      let items = []
+      for (const value of this.workingData.fuelingOperations) {
+        items.push(value.petrolStation)
+      }
+      return items
     }
   },
   watch: {
