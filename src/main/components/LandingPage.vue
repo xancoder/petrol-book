@@ -96,10 +96,11 @@
                           ></v-combobox>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
-                          <v-text-field
+                          <v-combobox
                             v-model="tableEditedItem.petrolType"
+                            :items="petrolTypes"
                             label="Type"
-                          ></v-text-field>
+                          ></v-combobox>
                         </v-col>
                         <v-col cols="12" sm="6" md="4">
                           <v-text-field
@@ -238,6 +239,13 @@ export default {
       let items = []
       for (const value of this.workingData.fuelingOperations) {
         items.push(value.petrolStation)
+      }
+      return items
+    },
+    petrolTypes() {
+      let items = []
+      for (const value of this.workingData.fuelingOperations) {
+        items.push(value.petrolType)
       }
       return items
     }
