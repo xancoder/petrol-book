@@ -91,14 +91,14 @@
                         <v-combobox
                           v-model="tableEditedItem.petrolStation"
                           :items="petrolStations"
-                          label="Station"
+                          label="Petrol Station"
                         ></v-combobox>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-combobox
                           v-model="tableEditedItem.petrolType"
                           :items="petrolTypes"
-                          label="Type"
+                          label="Petrol Type"
                         ></v-combobox>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
@@ -190,9 +190,9 @@ export default {
       {text: 'Time', value: 'time', align: 'left'},
       {text: 'Petrol Station', value: 'petrolStation', align: 'left'},
       {text: 'Petrol Type', value: 'petrolType', align: 'left'},
-      {text: 'Petrol Costs', value: 'costs', align: 'right'},
-      {text: 'Refuelled Liquid', value: 'liquid', align: 'right'},
-      {text: 'Driven Distance', value: 'distance', align: 'right'},
+      {text: 'Costs', value: 'costs', align: 'right'},
+      {text: 'Liquid', value: 'liquid', align: 'right'},
+      {text: 'Distance', value: 'distance', align: 'right'},
       {text: 'Mileage', value: 'mileage', align: 'right'},
       {text: 'Price Per Liquid', value: 'ppl', align: 'right'},
       {text: 'Liquid Per 100 Distance', value: 'l100', align: 'right'},
