@@ -165,6 +165,9 @@
             mdi-delete
           </v-icon>
         </template>
+        <template v-slot:item.ppl="{ item }">
+          {{ (item.costs / item.liquid).toFixed(3) }}
+        </template>
       </v-data-table>
     </v-col>
   </v-row>
@@ -185,6 +188,7 @@ export default {
       {text: 'Refuelled Liquid', value: 'liquid', align: 'right'},
       {text: 'Driven Distance', value: 'distance', align: 'right'},
       {text: 'Mileage', value: 'mileage', align: 'right'},
+      {text: 'Price Per Liquid', value: 'ppl', align: 'right'},
       {text: 'Actions', value: 'actions', align: 'left', sortable: false}
     ],
     tableEditedIndex: -1,
