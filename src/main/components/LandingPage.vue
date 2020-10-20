@@ -168,6 +168,9 @@
         <template v-slot:item.ppl="{ item }">
           {{ (item.costs / item.liquid).toFixed(3) }}
         </template>
+        <template v-slot:item.l100="{ item }">
+          {{ ((item.liquid * 100) / item.distance).toFixed(2) }}
+        </template>
       </v-data-table>
     </v-col>
   </v-row>
@@ -189,6 +192,7 @@ export default {
       {text: 'Driven Distance', value: 'distance', align: 'right'},
       {text: 'Mileage', value: 'mileage', align: 'right'},
       {text: 'Price Per Liquid', value: 'ppl', align: 'right'},
+      {text: 'Liquid Per 100 Distance', value: 'l100', align: 'right'},
       {text: 'Actions', value: 'actions', align: 'left', sortable: false}
     ],
     tableEditedIndex: -1,
