@@ -91,14 +91,14 @@
                         <v-combobox
                           v-model="tableEditedItem.petrolStation"
                           :items="petrolStations"
-                          label="Station"
+                          label="Petrol Station"
                         ></v-combobox>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-combobox
                           v-model="tableEditedItem.petrolType"
                           :items="petrolTypes"
-                          label="Type"
+                          label="Petrol Type"
                         ></v-combobox>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">
@@ -165,6 +165,15 @@
             mdi-delete
           </v-icon>
         </template>
+        <template v-slot:item.ppl="{ item }">
+          {{ (item.costs / item.liquid).toFixed(3) }}
+        </template>
+        <template v-slot:item.l100="{ item }">
+          {{ ((item.liquid * 100) / item.distance).toFixed(2) }}
+        </template>
+        <template v-slot:item.p100="{ item }">
+          {{ ((item.costs / item.liquid) * ((item.liquid * 100) / item.distance)).toFixed(2) }}
+        </template>
       </v-data-table>
     </v-col>
   </v-row>
@@ -181,10 +190,13 @@ export default {
       {text: 'Time', value: 'time', align: 'left'},
       {text: 'Petrol Station', value: 'petrolStation', align: 'left'},
       {text: 'Petrol Type', value: 'petrolType', align: 'left'},
-      {text: 'Petrol Costs', value: 'costs', align: 'right'},
-      {text: 'Refuelled Liquid', value: 'liquid', align: 'right'},
-      {text: 'Driven Distance', value: 'distance', align: 'right'},
+      {text: 'Costs', value: 'costs', align: 'right'},
+      {text: 'Liquid', value: 'liquid', align: 'right'},
+      {text: 'Distance', value: 'distance', align: 'right'},
       {text: 'Mileage', value: 'mileage', align: 'right'},
+      {text: 'Price Per Liquid', value: 'ppl', align: 'right'},
+      {text: 'Liquid Per 100 Distance', value: 'l100', align: 'right'},
+      {text: 'Costs Per 100 Distance', value: 'p100', align: 'right'},
       {text: 'Actions', value: 'actions', align: 'left', sortable: false}
     ],
     tableEditedIndex: -1,
@@ -193,20 +205,20 @@ export default {
       time: '',
       petrolStation: '',
       petrolType: '',
-      costs: 0,
-      liquid: 0,
-      distance: 0,
-      mileage: 0
+      costs: null,
+      liquid: null,
+      distance: null,
+      mileage: null
     },
     tableDefaultItem: {
       date: '',
       time: '',
       petrolStation: '',
       petrolType: '',
-      costs: 0,
-      liquid: 0,
-      distance: 0,
-      mileage: 0
+      costs: null,
+      liquid: null,
+      distance: null,
+      mileage: null
     },
     menuDate: false,
     menuTime: false,
