@@ -205,20 +205,20 @@ export default {
       time: '',
       petrolStation: '',
       petrolType: '',
-      costs: 0,
-      liquid: 0,
-      distance: 0,
-      mileage: 0
+      costs: null,
+      liquid: null,
+      distance: null,
+      mileage: null
     },
     tableDefaultItem: {
       date: '',
       time: '',
       petrolStation: '',
       petrolType: '',
-      costs: 0,
-      liquid: 0,
-      distance: 0,
-      mileage: 0
+      costs: null,
+      liquid: null,
+      distance: null,
+      mileage: null
     },
     menuDate: false,
     menuTime: false,
