@@ -4,6 +4,7 @@
       <v-file-input
         v-model="databaseFile"
         v-on:change="loadDatabase()"
+        v-on:click:clear="resetDatabase()"
         show-size
         truncate-length="42"
         prepend-icon="mdi-database"
@@ -31,6 +32,7 @@
                   class="mb-2"
                   color="primary"
                   tile
+                  :disabled="!databaseFile"
                 >
                   <v-icon>mdi-plus</v-icon>
                 </v-btn>
@@ -246,6 +248,18 @@ export default {
         distance: '',
         liquid: ''
       }
+    },
+    workingDataDefault: {
+      fuelingOperations: [],
+      meta: {
+        manufacturer: '',
+        model: ''
+      },
+      units: {
+        costs: '',
+        distance: '',
+        liquid: ''
+      }
     }
   }),
   created() {
@@ -328,6 +342,12 @@ export default {
       } catch (e) {
         alert('Failed to save the file !' + e)
       }
+    },
+    resetDatabase() {
+      console.log(this.databaseFile)
+      this.databaseFile = null
+      this.workingData = Object.assign({}, this.workingDataDefault)
+      console.log(this.databaseFile)
     }
   }
 }
