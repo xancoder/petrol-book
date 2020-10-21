@@ -1,6 +1,16 @@
 <template>
   <v-row>
-    <v-col>
+    <v-col cols="12">
+      <v-file-input
+        v-model="databaseFile"
+        v-on:change="loadDatabase()"
+        show-size
+        truncate-length="42"
+        prepend-icon="mdi-database"
+        accept=".json"
+      ></v-file-input>
+    </v-col>
+    <v-col cols="12">
       <v-data-table
         :headers="tableHeaders"
         :items="workingData.fuelingOperations"
@@ -180,10 +190,13 @@
 </template>
 
 <script>
+const fs = require('fs')
+
 export default {
   name: 'landing-page',
   components: {},
   data: () => ({
+    databaseFile: null,
     tableDialog: false,
     tableHeaders: [
       {text: 'Date', value: 'date', align: 'left'},
@@ -276,6 +289,7 @@ export default {
     deleteItem(item) {
       const index = this.workingData.fuelingOperations.indexOf(item)
       confirm('Are you sure you want to delete this item?') && this.workingData.fuelingOperations.splice(index, 1)
+      this.saveDatabase()
     },
     close() {
       this.tableDialog = false
@@ -296,6 +310,24 @@ export default {
         this.workingData.fuelingOperations.push(this.tableEditedItem)
       }
       this.close()
+      this.saveDatabase()
+    },
+    loadDatabase() {
+      if (this.databaseFile) {
+        try {
+          this.workingData = JSON.parse(fs.readFileSync(this.databaseFile.path, {encoding: 'utf8', flag: 'r'}))
+        } catch (e) {
+          alert('Failed to load the file !' + e)
+        }
+      }
+    },
+    saveDatabase: function () {
+      const data = JSON.stringify(this.workingData, null, 2)
+      try {
+        fs.writeFileSync(this.databaseFile.path, data, 'utf-8')
+      } catch (e) {
+        alert('Failed to save the file !' + e)
+      }
     }
   }
 }
