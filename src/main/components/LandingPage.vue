@@ -225,7 +225,12 @@ export default {
       costs: null,
       liquid: null,
       distance: null,
-      mileage: null
+      mileage: null,
+      units: {
+        costs: '',
+        distance: '',
+        liquid: ''
+      }
     },
     tableDefaultItem: {
       date: '',
@@ -235,7 +240,12 @@ export default {
       costs: null,
       liquid: null,
       distance: null,
-      mileage: null
+      mileage: null,
+      units: {
+        costs: '',
+        distance: '',
+        liquid: ''
+      }
     },
     menuDate: false,
     menuTime: false,
