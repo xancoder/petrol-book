@@ -306,6 +306,7 @@ export default {
   },
   methods: {
     initialize() {
+      this.databaseFile = null
     },
     editItem(item) {
       this.tableEditedIndex = this.workingData.fuelingOperations.indexOf(item)
@@ -356,10 +357,8 @@ export default {
       }
     },
     resetDatabase() {
-      console.log(this.databaseFile)
-      this.databaseFile = null
       this.workingData = Object.assign({}, this.workingDataDefault)
-      console.log(this.databaseFile)
+      this.initialize()
     }
   }
 }
