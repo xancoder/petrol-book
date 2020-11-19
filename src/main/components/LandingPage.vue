@@ -406,6 +406,8 @@ export default {
       if (this.databaseFile) {
         try {
           this.workingData = JSON.parse(fs.readFileSync(this.databaseFile.path, {encoding: 'utf8', flag: 'r'}))
+          this.tableDefaultItem.units = Object.assign({}, this.workingData.units)
+          this.tableEditedItem = Object.assign({}, this.tableDefaultItem)
         } catch (e) {
           alert('Failed to load the file !' + e)
         }
