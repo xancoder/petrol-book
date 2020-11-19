@@ -1,7 +1,7 @@
 <template>
   <diV>
     <v-row>
-      <v-col cols="12">
+      <v-col cols="5">
         <v-file-input
           v-model="databaseFile"
           v-on:change="loadDatabase()"
@@ -12,6 +12,46 @@
           accept=".json"
         ></v-file-input>
       </v-col>
+      <v-col cols="2">
+        <v-text-field
+          v-model="workingData.meta.manufacturer"
+          label="Manufacturer"
+          hide-details="auto"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="2">
+        <v-text-field
+          v-model="workingData.meta.model"
+          label="Model"
+          hide-details="auto"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="1">
+        <v-text-field
+          v-model="workingData.units.costs"
+          :messages="['Default Unit']"
+          hide-details="auto"
+          label="Cost"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="1">
+        <v-text-field
+          v-model="workingData.units.distance"
+          :messages="['Default Unit']"
+          hide-details="auto"
+          label="Distance"
+        ></v-text-field>
+      </v-col>
+      <v-col cols="1">
+        <v-text-field
+          v-model="workingData.units.liquid"
+          :messages="['Default Unit']"
+          hide-details="auto"
+          label="Liquid"
+        ></v-text-field>
+      </v-col>
+    </v-row>
+    <v-row>
       <v-col cols="12">
         <v-data-table
           :headers="tableHeaders"
