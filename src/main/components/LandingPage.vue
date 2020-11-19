@@ -180,6 +180,29 @@
                           ></v-text-field>
                         </v-col>
                       </v-row>
+                      <v-row>
+                        <v-col cols="4">
+                          <v-text-field
+                            v-model="tableEditedItem.units.distance"
+                            hide-details="auto"
+                            label="Distance"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="4">
+                          <v-text-field
+                            v-model="tableEditedItem.units.costs"
+                            hide-details="auto"
+                            label="Cost"
+                          ></v-text-field>
+                        </v-col>
+                        <v-col cols="4">
+                          <v-text-field
+                            v-model="tableEditedItem.units.liquid"
+                            hide-details="auto"
+                            label="Liquid"
+                          ></v-text-field>
+                        </v-col>
+                      </v-row>
                     </v-container>
                   </v-card-text>
                   <v-card-actions>
