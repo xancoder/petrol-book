@@ -7,7 +7,7 @@
           v-on:change="loadDatabase()"
           v-on:click:clear="resetDatabase()"
           show-size
-          truncate-length="42"
+          truncate-length="75"
           prepend-icon="mdi-database"
           accept=".json"
         ></v-file-input>
@@ -258,6 +258,8 @@
 
 <script>
 const fs = require('fs')
+const os = require('os')
+const path = require('path')
 
 export default {
   name: 'landing-page',
@@ -369,7 +371,24 @@ export default {
   },
   methods: {
     initialize() {
-      this.databaseFile = null
+      function appendLeadingZeroes(n) {
+        if (n <= 9) {
+          return "0" + n;
+        }
+        return n
+      }
+
+      const current_datetime = new Date()
+      let dateTime = current_datetime.getFullYear() + "-" + appendLeadingZeroes(current_datetime.getMonth() + 1) + "-" + appendLeadingZeroes(current_datetime.getDate()) + "_" + appendLeadingZeroes(current_datetime.getHours()) + appendLeadingZeroes(current_datetime.getMinutes()) + appendLeadingZeroes(current_datetime.getSeconds())
+      const tmpFileName = "petrol-book" + "_" + dateTime + ".json"
+      const tmpFilePath = path.join(os.homedir(), tmpFileName)
+      this.databaseFile = new File(
+        [new Blob([JSON.stringify({}, null, 2)], {type: 'application/json'})],
+        tmpFilePath,
+        {
+          type: "application/json"
+        }
+      )
     },
     editItem(item) {
       this.tableEditedIndex = this.workingData.fuelingOperations.indexOf(item)
@@ -416,7 +435,11 @@ export default {
     saveDatabase: function () {
       const data = JSON.stringify(this.workingData, null, 2)
       try {
-        fs.writeFileSync(this.databaseFile.path, data, 'utf-8')
+        if (this.databaseFile.path) {
+          fs.writeFileSync(this.databaseFile.path, data, 'utf-8')
+        } else {
+          fs.writeFileSync(this.databaseFile.name, data, 'utf-8')
+        }
       } catch (e) {
         alert('Failed to save the file !' + e)
       }
