@@ -435,7 +435,11 @@ export default {
     saveDatabase: function () {
       const data = JSON.stringify(this.workingData, null, 2)
       try {
-        fs.writeFileSync(this.databaseFile.path, data, 'utf-8')
+        if (this.databaseFile.path) {
+          fs.writeFileSync(this.databaseFile.path, data, 'utf-8')
+        } else {
+          fs.writeFileSync(this.databaseFile.name, data, 'utf-8')
+        }
       } catch (e) {
         alert('Failed to save the file !' + e)
       }
