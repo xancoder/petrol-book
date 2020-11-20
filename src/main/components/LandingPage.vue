@@ -7,7 +7,7 @@
           v-on:change="loadDatabase()"
           v-on:click:clear="resetDatabase()"
           show-size
-          truncate-length="42"
+          truncate-length="75"
           prepend-icon="mdi-database"
           accept=".json"
         ></v-file-input>
