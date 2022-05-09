@@ -269,7 +269,7 @@ export default {
     tableDialog: false,
     tableHeaders: [
       {text: 'Date', value: 'date', align: 'left'},
-      {text: 'Time', value: 'time', align: 'left'},
+      {text: 'Time', value: 'time', align: 'left', sortable: false},
       {text: 'Petrol Station', value: 'petrolStation', align: 'left'},
       {text: 'Petrol Type', value: 'petrolType', align: 'left'},
       {text: 'Costs', value: 'costs', align: 'right'},
@@ -354,14 +354,14 @@ export default {
       for (const value of this.workingData.fuelingOperations) {
         items.push(value.petrolStation)
       }
-      return items
+      return items.sort()
     },
     petrolTypes() {
       let items = []
       for (const value of this.workingData.fuelingOperations) {
         items.push(value.petrolType)
       }
-      return items
+      return items.sort()
     }
   },
   watch: {
